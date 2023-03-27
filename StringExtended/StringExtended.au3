@@ -10,7 +10,7 @@ Func _StringAppend(ByRef $sSource, $sValue)
 EndFunc
 
 Func _StringAppendLine(ByRef $sSource, $sValue = "")
-	$sSource &= "@CRLF@$sValue$"
+	$sSource &= "$sValue$@CRLF@"
 	Return $sSource
 EndFunc
 

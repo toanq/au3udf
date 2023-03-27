@@ -8,7 +8,7 @@ Global $aResult[0]
 Local $iLastIndex = 0
 $iCurrentTaskIndex = 0
 For $i = 0 To UBound($aData)-1
-	If (StringRegExp($aData[$i], "^Bug")) Then
+	If (StringRegExp($aData[$i], "^(?:Bug|Product Backlog Item)")) Then
 			$iCurrentTaskIndex = $i
 			$iLastIndex = UBound($aTask)
 			ReDim $aTask[$iLastIndex+1]
@@ -31,7 +31,7 @@ For $i = UBound($aTask)-1 To 1 Step -1
 			ContinueLoop
 	EndIf
 
-	If Not StringRegExp($aTask[$i], "^Bug") Then
+	If Not StringRegExp($aTask[$i], "^(?:Bug|Product Backlog Item)") Then
 		MsgBox(0,'ERROR', 'Data was not clean 2@CRLF@'&$aTask[$i])
 		Exit
 	EndIf
@@ -49,7 +49,7 @@ Next
 ;_ArrayDisplay($aTask)
 
 For $i = 0 To UBound($aTask)-1
-	If Not StringRegExp($aTask[$i], "^Bug") Then ContinueLoop
+	If Not StringRegExp($aTask[$i], "^(?:Bug|Product Backlog Item)") Then ContinueLoop
 
 	$iLastIndex = UBound($aResult)
 	ReDim $aResult[$iLastIndex+1]
@@ -60,7 +60,7 @@ Next
 _ArrayDisplay($aResult)
 
 Func GetTaskId($sTaskName)
-	Local $_aResult = StringRegExp($sTaskName, "Bug (\d+)", 3)
+	Local $_aResult = StringRegExp($sTaskName, "(?:Bug|Product Backlog Item) (\d+)", 3)
 
 	If @error Then
 		MsgBox(0,'',"Cannot get Bug/PBI id from:@CRLF@$sTaskName$")
