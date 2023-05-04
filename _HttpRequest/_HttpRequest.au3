@@ -223,7 +223,7 @@ Func _HttpRequest($iReturn, $sURL = '', $sData2Send = '', $sCookie = '', $sRefer
 		• If a 401 Or 407 status code is returned indicating that authentication is required, call WinHttpQueryAuthSchemes To find an acceptable scheme.
 		• Set the authentication scheme, username, And password With WinHttpSetCredentials.
 		• Resend the request With the same request handle by calling WinHttpSendRequest.
-	
+
 		- The credentials set by WinHttpSetCredentials are only used For one request.
 		• WinHTTP does Not cache the credentials to use. In other requests, which means that applications must be written that can respond to multiple requests.
 		• If an authenticated connection is re - used, other requests may Not be challenged, but your code should be able to respond to a request at any time.
@@ -593,11 +593,11 @@ Func _HttpRequest_DataFormCreate($a_FormItems, $sFilenameDefault = Default)     
 					EndIf
 					;-------------------------------------------------------
 					If $vValue[0] == 'unknown_name' Then __HttpRequest_ErrNotify('_HttpRequest_DataFormCreate', 'Dữ liệu cần upload không xác định được kiểu tập tin', '', 'Warning')
-					
+
 				Case StringLeft($a_FormItems[$i][0], 1) == '~'
 					$a_FormItems[$i][0] = StringTrimLeft($a_FormItems[$i][0], 1)
 					$vValue = _Utf8ToAnsi($a_FormItems[$i][1])
-					
+
 				Case Else
 					$vValue = $a_FormItems[$i][1]
 			EndSelect
@@ -973,9 +973,9 @@ Func _HttpRequest_URLChangeToRealIP($sURL, $iUseServiceOnline = False, $vGetFull
 			$aRet[$iCounter] = ($vGetFullURL ? $aURL[7] & '://' & $aURL[10] & $aIP[$i] & $aURL[3] : $aIP[$i])
 			$iCounter += 1
 		Next
-		
+
 	Else     ;-------------------------------------------------------
-		
+
 		If $aURL[10] Then $aURL[2] = StringTrimLeft($aURL[2], 4)
 		Local $aRet[0], $iCounter = 0
 		$g___ErrorNotify = False
@@ -1790,7 +1790,7 @@ EndFunc
 		_Crypt_Shutdown()
 		Return StringLower(Hex($HashS2))
 	EndFunc
-	
+
 	Func _GetMD5Decrypt($sMD5Encrypt)
 		Local $aDecrypt
 		$aDecrypt = StringRegExp(_HttpRequest(2, 'http://md5.my-addr.com/md5_decrypt-md5_cracker_online/md5_decoder_tool.php', 'md5=' & $sMD5Encrypt), '(?i)Hashed string</span>: (.*?)</div>', 1)
@@ -1891,7 +1891,7 @@ EndFunc
 		Local $vValue = _HttpRequest_DataFormCreate($a_FormItems)
 		Return SetError(@error, @extended, $vValue)
 	EndFunc
-	
+
 	Func _HttpRequest_GetImageBinaryDimension($sBinaryData_Or_FilePath, $Release_hBitmap = True, $isFilePath = False)
 		__ConsoleOldFuncWarning('_HttpRequest_GetImageBinaryDimension', '_Image_GetDimension', False)
 		Local $vValue = _Image_GetDimension($sBinaryData_Or_FilePath, $Release_hBitmap, $isFilePath)
@@ -2123,7 +2123,7 @@ EndFunc
 					EndIf
 				EndIf
 			#EndRegion
-			
+
 		ElseIf StringInStr($g___LocationRedirect, 'signin/challenge/ipp', 1, 1) Then
 			Exit MsgBox(4096 + 48, 'Thông báo', 'Tài khoản này bị bắt buộc phải được Xác Nhận Danh Tính trên trình duyệt' & @CRLF & 'Vui lòng mở tài khoản trên trình duyệt để xác nhận.')
 			#Region <Đang test>
@@ -2152,7 +2152,7 @@ EndFunc
 		If StringRegExp($rq2, 'action="\/signin\/challenge\/kpp\/[45]"') Then
 			_HttpRequest_SetUserAgent($BkUserAgent)
 			Return SetError(7, __HttpRequest_ErrNotify('_HttpRequest_GoogleLogin', 'Tài khoản cần được xác thực - Vui lòng mở Gmail trên trình duyệt và báo cáo an toàn nếu nhận được thông báo Activity'), $rq2)
-			
+
 		ElseIf Not StringInStr($sHeader, 'SAPISID', 0, 1) Then
 			_HttpRequest_SetUserAgent($BkUserAgent)
 			Return SetError(8, __HttpRequest_ErrNotify('_HttpRequest_GoogleLogin', 'Đăng nhập thất bại không rõ nguyên do. Vui lòng LogOut (nếu đã đăng nhập) và LogIn lại tài khoản trên trình duyệt'), $rq2)
@@ -2604,7 +2604,7 @@ EndFunc
 		Local $aRet = [$aCall[3], $aCall[4], $aCall[2]]
 		Return $aRet
 	EndFunc
-	
+
 	Func _WinHttpCrackURL2($sURL)
 		Local $tURL_COMPONENTS = DllStructCreate("dword StructSize;ptr SchemeName;dword SchemeNameLength;int Scheme;ptr HostName;dword HostNameLength;word Port;ptr UserName;dword UserNameLength;ptr Password;dword PasswordLength;ptr UrlPath;dword UrlPathLength;ptr ExtraInfo;dword ExtraInfoLength")
 		$tURL_COMPONENTS.StructSize = DllStructGetSize($tURL_COMPONENTS)
@@ -2629,7 +2629,7 @@ EndFunc
 		Local $aRet[8] = [DllStructGetData($tBuffers[0], 1), DllStructGetData($tURL_COMPONENTS, "Scheme"), DllStructGetData($tBuffers[1], 1), DllStructGetData($tURL_COMPONENTS, "Port"), DllStructGetData($tBuffers[2], 1), DllStructGetData($tBuffers[3], 1), DllStructGetData($tBuffers[4], 1), DllStructGetData($tBuffers[5], 1)]
 		Return $aRet
 	EndFunc
-	
+
 	Func _WinHttpCreateURL2($aURLArray)
 		If UBound($aURLArray) <> 8 Then Return SetError(1, 0, "")
 		Local $tURL_COMPONENTS = DllStructCreate("dword StructSize;ptr SchemeName;dword SchemeNameLength;int Scheme;ptr HostName;dword HostNameLength;word Port;ptr UserName;dword UserNameLength;ptr Password;dword PasswordLength;ptr UrlPath;dword UrlPathLength;ptr ExtraInfo;dword ExtraInfoLength;")
@@ -3128,7 +3128,7 @@ EndFunc
 		; Được sửa đổi và cải tiến từ UDF JSON Object của tác giả [ozmike] (https://www.autoitscript.com/forum/topic/156794-oo_jsonudf-jsonpath-oo-using-javascript-in-auto-it)
 		; ALL methods CASE SENSITIVE!
 		; Eg: you can't go $jsObj.array[0] in AutoIt, this frameworks lets you go $jsObj.array.item(0)
-		
+
 		Static $sOJsonLibrary = _
 				'function xml2json(e){return xml2jsonRecurse(e=cleanXML(e),0)}function xml2jsonRecurse(e){for(var r,n,t,a,s,l={};e.match(/<[^\/][^>]*>/);)r=(s=e.match(' & _
 				'/<[^\/][^>]*>/)[0]).substring(1,s.length-1),-1==(n=e.indexOf(s.replace("<","</")))&&(r=s.match(/[^<][\w+$]*/)[0],-1==(n=e.indexOf("</"+r))&&(n=e.index' & _
@@ -3393,7 +3393,7 @@ EndFunc
 		EndIf
 		Return $__FalseValue
 	EndFunc
-	
+
 	Func __HttpRequest_CheckUpdate($iCurrentVersion)
 		;http://jsoneditoronline.org/?id
 		If $CmdLine[0] > 0 And $CmdLine[1] = '--httprequest-update' Then
@@ -4146,7 +4146,7 @@ EndFunc
 		GUIDelete($___hGUI_Captcha)
 		Return SetError($vErr, '', $CaptchaRs)
 	EndFunc
-	
+
 	Func _Image_ResizeInMemory($inBinaryImage, $vScale = 2, $vBorder = 0, $iARGB_BackgroundColor = 0xFFFFFFFF, $vSaveExt = 'png')
 		_GDIPlus_Startup()
 		Local $hBmp_Foreground = _GDIPlus_BitmapCreateFromMemory($inBinaryImage)     ;load a transparent png image
@@ -4467,7 +4467,7 @@ EndFunc
 							Until IsObj($oReCaptchaResponse)
 							GUICtrlSetBkColor($__idRefreshButton, 0x0099FF)
 							__IE_MouseClick($hIE, 80, 260 - 25)
-							
+
 						Case $__idCloseButton
 							Return SetError(6, __HttpRequest_ErrNotify('__IE_Init_RecaptchaBox', 'Đã huỷ việc giải Captcha'), '')
 
@@ -4502,7 +4502,7 @@ EndFunc
 							For $i = 0 To UBound($aCacheIE) - 1
 								If StringInStr(($aCacheIE[$i])[0], 'mms://www.google.com:443/recaptcha/api2/payload') Then _WinINet_CacheEntryInfoDelete(($aCacheIE[$i])[1])
 							Next
-							
+
 						Case $__idRefreshButton
 							GUICtrlSetBkColor($__idRefreshButton, 0xFF0011)
 							.document.execCommand("Refresh")
@@ -4514,7 +4514,7 @@ EndFunc
 							Until IsObj($oReCaptchaResponse)
 							GUICtrlSetBkColor($__idRefreshButton, 0x0099FF)
 							__IE_MouseClick($hIE, 80, 260 - 25)
-							
+
 						Case -7, -9         ;$GUI_EVENT_PRIMARYDOWN
 							$___aMouseInfo_Old = GUIGetCursorInfo($hGUI)
 							If @error Then ContinueLoop
@@ -4818,7 +4818,7 @@ EndFunc
 		DllCall($dll_WinInet, "int", "FindCloseUrlCache", "ptr", $hUrlCacheEntry)
 		Return SetError(Int(Not ($iCounter > 0)), $iCounter, $aRet)
 	EndFunc
-	
+
 	Func _WinINet_CacheEntryInfoDelete($sUrlName)
 		If Not $dll_WinInet Then
 			$dll_WinInet = DllOpen('wininet.dll')
@@ -4828,7 +4828,7 @@ EndFunc
 		If @error Or $avResult[0] <> 0 Then Return SetError(1, 0, False)
 		Return True
 	EndFunc
-	
+
 	Func _WinINet_CacheEntryInfoStructToArray($tCacheEntryInfo)
 		Local $avReturn[7] = ['SourceUrlName', 'LocalFileName', 'HeaderInfo'], $iPtr, $iStructEnd = Number(DllStructGetPtr($tCacheEntryInfo)) + DllStructGetSize($tCacheEntryInfo)
 		For $i = 0 To 2
@@ -4841,7 +4841,7 @@ EndFunc
 		$avReturn[6] = DllStructGetData($tCacheEntryInfo, "HitRate")
 		Return $avReturn
 	EndFunc
-	
+
 	Func _WinINet_StringLenFromPtr($pString, $bUnicode = True)
 		Local $aRet = DllCall($dll_Kernel32, 'int', 'lstrlen' & ($bUnicode ? 'W' : ''), 'struct*', $pString)
 		If @error Then Return SetError(1, 0, 0)
@@ -5327,7 +5327,7 @@ EndFunc
 		If @error Then Return SetError(4, __HttpRequest_ErrNotify('_HttpRequest_ConnectIDM', 'Tương tác SendLinkToIDM thất bại'), False)
 		Return True
 	EndFunc
-	
+
 	Func _HttpRequest_Speech2Text($sFilePath_or_URL, $iAccessToken = Default, $vHomoPhones = False, $vHomoPhonesComplex = False)
 		;https://github.com/ecthros/uncaptcha
 		;https://github.com/debasishm89/hack_audio_captcha/blob/master/download-recaptcha.py
@@ -5368,7 +5368,7 @@ EndFunc
 		;----------------------------------------------------------------------------------------------------------------------------------
 		Return $sText
 	EndFunc
-	
+
 	Func _HttpRequest_BypassADFLY($linkADFLY)
 		_HttpRequest_SessionSet(105)
 		_HttpRequest_SessionClear(105)
@@ -5409,11 +5409,11 @@ EndFunc
 	Func _oHttpRequest_SessionGet()
 		Return $g___oWinHTTP[$g___LastSession]
 	EndFunc
-	
+
 	Func _oHttpRequest_SessionSet($oSession)
 		$g___oWinHTTP[$g___LastSession] = $oSession
 	EndFunc
-	
+
 	Func _oHttpRequest($iReturn, $sURL, $sData2Send = '', $sCookie = '', $sReferer = '', $sAdditional_Headers = '', $sMethod = '')
 		Local $vContentType = '', $vBoundary = '', $vUpload = 0
 		Local $sServerUserName = '', $sServerPassword = '', $sProxyUserName = '', $sProxyPassword = ''
@@ -5534,7 +5534,7 @@ EndFunc
 					Else
 						Return SetError(0, $vResponse_StatusCode, $g___retData[$g___LastSession][0])
 					EndIf
-					
+
 				Case 2 To 5
 					If Not $aRetMode[12] Then $g___retData[$g___LastSession][1] = .ResponseBody
 					If @error Then Return SetError(8, $vResponse_StatusCode, '')
