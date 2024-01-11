@@ -47,16 +47,16 @@ For $i = UBound($aTask)-1 To 1 Step -1
 Next
 
 ;_ArrayDisplay($aTask)
-
+$sResult = ""
 For $i = 0 To UBound($aTask)-1
 	If Not StringRegExp($aTask[$i], "^(?:Bug|Product Backlog Item)") Then ContinueLoop
 
 	$iLastIndex = UBound($aResult)
 	ReDim $aResult[$iLastIndex+1]
 	$aResult[$iLastIndex] = $aTask[$i]
-	ConsoleWrite($aTask[$i]&@CRLF)
+	$sResult  &= $aTask[$i]&@CRLF
 Next
-
+ClipPut($sResult)
 _ArrayDisplay($aResult)
 
 Func GetTaskId($sTaskName)

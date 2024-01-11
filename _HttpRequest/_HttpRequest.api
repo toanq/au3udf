@@ -1,0 +1,63 @@
+ 
+ 
+_HttpRequest($iReturn, $sURL [, $sData2Send = '', $sCookie = '', $sReferer = '', $sAdditional_Headers = '', $sMethod = '', $CallBackFunc_Progress = ''])
+_HttpRequest_SessionSet($sSessionNumber) Cài đặt session
+_HttpRequest_SessionClear([$sSessionNumber = 0, $vClearProxy = False]) Xoá session (Clear cookies handle của session)
+_HttpRequest_CookieJarSet($sCookieJarFilePath) Kích hoạt CookieJar
+_HttpRequest_CookieJarSearch($sURL) Tìm kiếm Cookie trong CookieJar ứng với URL
+_HttpRequest_Test($sData [, $FilePath = Default, $iEncoding = Default, $iShellExcute = True]) Ghi giá trị trả về ra một tập tin (mặc định là HTML)
+_HttpRequest_GoogleLogin($sUser, $sPass [, $sRedirectURL = Default, $iReturn = Default, $iUserAgent = Default, $iSetPrevUAAfterLogin = True, $x = -1, $y = -1, $hParent = Default])
+_HttpRequest_BypassCloudflare($URL_Domain[, $iTimeout = 10000]) Vượt kiểm tra của Cloudflare
+_HttpRequest_DataFormCreate($aFormItems) Tạo data-form Multi-part. $aFormItems phải là mảng 1D: ["key1=value1", "key2=value2",...] hoặc 2D: [["k1", "v1"], ["k2", "v2"], ...]
+_HttpRequest_DataFormConvertFromClipboard($iType) Chuyển văn bản Multipart/data-form từ Browser/Live HTTP Headers sang mảng dữ liệu cho code AutoIt
+_HttpRequest_FileSplitSize($iSize_or_URL [, $iPart = 16, $iOffset = Default]) Chia nhỏ kích cỡ tập tin ra các phần đều nhau. $iSize_or_URL có thể là kích cỡ hoặc URL tập tin
+_HttpRequest_QueryHeaders($iQueryFlag [, $iIndex = 0, $iSession = Default]) Lấy thông tin từ header
+_HttpRequest_QueryData($iReadingMode = Default [, $iSession = Default, $CallBackFunc_Progress = ""]) Lấy dữ liệu trả về bất chấp $iReturn của _HttpRequest
+_HttpRequest_SearchHiddenValues($iSourceHtml_or_URL [, $iKeySearch = '', $iURIEncodeValue = True]) Tìm các giá trị Hidden từ source HTML (hữu dụng khi POST)
+_HttpRequest_SetProxy([$Proxy = '', $ProxyUserName = '', $ProxyPassword = '', $ProxyBypass = '', $iSession = Default]) Cài Proxy cho request
+_HttpRequest_SetUserAgent([$sUserAgent = Default, $iSession = Default]) Cài User-Agent cho request
+_HttpRequest_SetTimeout([$TimeOut = Default]) Cài đặt Timeout cho request
+_HttpRequest_SetAuthorization([$sUserName = '', $sPassword = '', $iSession = Default]) Cài đặt Authorization cho request
+_HttpRequest_SetHotkeyStopRequest([$sHotKeyCancelReadWrite = '']) Cài đặt HotKey để dừng request (khi download/upload các tập tin)
+_HttpRequest_SetCookieRemeber([$Enable = True]) Enable/Disable chế độ ghi nhớ Cookies đã thêm bằng tay
+_HttpRequest_OnlineCompiler($iCode, $iLanguage) Biên dịch Code Online
+_HttpRequest_ReduceMem() Giảm tài nguyên hệ thống sử dụng trong quá trình request
+_HttpRequest_MsgBox($iFlag, $iTitle, $iText, [$iTimeout = 0]) Msgbox không chiếm code
+_HttpRequest_ConsoleWrite($sString) Ghi Console Tiếng Việt
+_HttpRequest_SetRoot($BaseURL, $iSession = Default) Cài đặt BaseURL cho request
+_HttpRequest_SetReadMode($iMode) Tắt bật thông báo ghi đè hay không khi request tải về một file đã tồn tại ở nơi được chỉ định tải xuống
+_HttpRequest_ParseCURL($cURL_Command) Request với dòng lệnh CURL đơn giản
+_HttpRequest_ParseJSON($sJSON) Chuyển chuỗi Json thành Json Object để có thể dễ dàng tương tác
+_HttpRequest_CheckProxyLive($sProxy) Check nhanh Proxy có xài cho request được hay không
+_HttpRequest_DnsDump($sDomain [, $vExportXLSX = False, $FolderSaveXLSX = Default]) Tìm kiếm các thông tin DNS, IP liên quan với Domain cần tìm hiểu
+_B64Encode($binaryData[, $iLinebreak = 0, $safeB64 = False, $iRunByMachineCode = False]) Encode Binary sang Base64. Phải chuyển về binary trước (Hàm StringToBinary) nếu không phải binary
+_B64Decode($base64Data[, $iRunByMachineCode = False]) Decode Base64 về Binary
+_BoundaryGenerator() Tạo chuỗi Boundary ngẫu nhiên, dùng khi POST Multi-part/Upload
+_Data2SendEncode($sData2Send) Encode (URI) giá trị DataToSend
+_GetCookie([$sHeader = '', $iSession = Default, $iTrimCookie = True, $Excluded_Values = '']) Lấy Cookies (nếu có) từ header
+_GetFileInfo($sFilePath [, $vDataTypeReturn = 1]) Lấy thông tin tập tin, trả về mảng [0] tên tập tin, [1] kiểu của tập tin, [2] nội dung tập tin
+_GetMD5($sFilePath_or_Data) Mã hoá MD5 một chuỗi hoặc tập tin
+_GetSHA1($sFilePath_or_Data) Mã hoá SHA1 một chuỗi hoặc tập tin
+_GetSHA256($sFilePath_or_Data) Mã hoá SHA256 một chuỗi hoặc tập tin
+_GetHMAC($sString, $iKey, $iAlgID = CALG_SHA_256) HMAC một string, dùng khi API yêu cầu Authorize với HMAC
+_GetHttpTime([$sHttpTime = '']) Lấy giờ tiêu chuẩn Http
+_GetTimeStamp([$Include_MSec = False, $sDateTime = Default]) Lấy Timestamp. Nếu $Include_MSec = False thì chỉ lấy đến giây, = True thì lấy đến mili-giây
+_GetDateFromTimeStamp($iTimeStamp, [$vLocalTime = False]) Chuyển Timestamp về thời gian chuẩn
+_GetLocationRedirect([$sHeader = '', $iIndex = -1, $iSession = Default]) Lấy địa chỉ redirect (nếu có) từ header
+_GetFreeProxy([$sFilePathToExport = '', $iGetFastProxyList = False])
+_URIDecode($sData [, $vUTF8 = True, $iEntities = 0]) Decode chuỗi chứa các ký tự % sang ký tự thường
+_URIEncode($sData [, $vUTF8 = True]) Encode chuỗi chứa các ký tự khác xdigit sang %
+_HTMLDecode($sData [, $Escape_Character_Head = '\\u', $Escape_Character_Tail = "", $AnsiEncode = False, $iHexLength = Default, $isHexNumber = True, $iEntities = 1]) Decode chuỗi chứa các kiểu \\u[hex], \\h[hex], &$[hex]; ...sang ký tự thường
+_HTMLEncode($sData [, $Escape_Character_Head = '\\u', $Escape_Character_Tail = "", $AnsiDecode = False, $iHexLength = Default, $iPassSpace = True]) Encode chuỗi chứa các ký tự khác ascii sang các dạng \\u[hex], &#[hex]; ...
+_AnsiToUtf8($sData) Chuyển chuỗi ANSI sang chuỗi UTF8
+_Utf8ToAnsi($sData) Chuyển chuỗi UTF8 sang chuỗi ANSI
+_JS_Execute($LibraryJS, $sCodeJS, $Name_Var_Return_Val [, $ModeIE = False, $PathTempLibJS = Default]) Chạy và trả kết quả Javascript
+_JS_Execute_Ex($iURL, $sHTML_by_HR_iURL, $sJSCode, $vRet_oIE = False) Chạy và trả kết quả Javascript
+_PHP_Execute($phpData, $Name_Var_Return_Val [, $BinaryMode = False, $phpVersion = Default]) Chạy và trả kết quả PHP
+_JS_ToStringAu3([$jsBeauty = False]) Chuyển nhanh nguồn JS sang string code AutoIt. Copy nguồn JS vào clicpboard trước khi chạy
+_IE_RecaptchaBox($sURL [, $vAdvancedMode = Default, $iX_GUI = Default, $iY_GUI = Default, $vTimeOut = Default]) Nhúng Recaptcha lên GUI
+_Image_SetGUI($sBinaryData_Or_FilePath_Or_URL, $idCtrl_Or_hWnd [, $width_Image = Default, $height_Image = Default]) Hiển thị trực tiếp Ảnh dạng dữ liệu Binary lên GUI, Control
+_Image_SetSimpleCaptchaGUI($BinaryCaptcha_Or_FilePath_Or_URL [, $x = -1, $y = -1, $hParent = Default]) Hiển thị Ảnh Captcha ở dạng dữ liệu Binary lên một GUI tạo sẵn
+StringRegExpMulti($sText, $sPattern1, $sPattern2 = "", $sPattern3 = "", $sPattern4 = "", ... $sPattern9 = "") StringRegExp với nhiều pattern
+_oHttpRequest($iReturn, $sURL [, $sData2Send = '', $sCookie = '', $sReferer = '', $sAdditional_Headers = '', $sMethod = '']) Request dựa trên WinHttp Object chứ không dùng Dll
+_HttpRequest_SwitchModeObj($iMode) Chuyển đổi mode request cho hàm _HttpRequest (sử dụng Dll hay Object)

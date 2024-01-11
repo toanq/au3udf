@@ -9,7 +9,7 @@ $iCompletion = 0
 For $sItem In $aData
 	If Not StringRegExp($sItem, "TOTAL") Then ContinueLoop
 
-	$sCount = StringFormat("%02d", StringRegExp($sItem, ": (\d+)", 3)[0])
+	$sCount = StringFormat("%02d", StringRegExp($sItem, "\t(\d+)", 3)[0])
 	$sPercent = ""
 	$iPercent = 0
 	If $iTotal < 0 Then
@@ -19,7 +19,7 @@ For $sItem In $aData
 		$sPercent = " - "&StringFormat("%05.2f", $iPercent)&"%"
 	EndIf
 
-	$sText = StringLeft(StringRegExp($sItem, "(TOTAL.+?):", 3)[0]&"                      ", 20)
+	$sText = StringLeft(StringRegExp($sItem, "(TOTAL.+?)\t", 3)[0]&"                      ", 20)
 	If StringRegExp($sText, "(?:PASSED|UNTESTABLE|BLOCKED)") Then
 		$iCompletion += $iPercent
 	EndIf
